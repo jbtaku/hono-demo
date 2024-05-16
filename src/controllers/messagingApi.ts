@@ -33,6 +33,6 @@ export const messagingApi = app.post(
       }),
     });
 
-    return c.json({ userId, text }, 200);
+    return c.json({ message: "request successful!!" }, 200);
   }
 );
