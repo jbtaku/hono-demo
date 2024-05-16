@@ -1,13 +1,10 @@
-import { Hono } from 'hono'
+import { Hono } from "hono";
+import { googleSpreadsheet } from "./controllers/googleSpreadSheet";
+import { messagingApi } from "./controllers/messagingApi";
 
 const app = new Hono()
+  .route("/googleSpreadSheet", googleSpreadsheet)
+  .route("/messagingApi", messagingApi);
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
-
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
-
-export default app
+export type AppType = typeof app;
+export default app;
