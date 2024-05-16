@@ -6,13 +6,20 @@ const app = new Hono();
 
 export const messagingApi = app.post(
   "/",
-  zValidator("json", z.object({ userId: z.string(), text: z.string() })),
+  zValidator(
+    "json",
+    z.object({
+      userId: z.string(),
+      text: z.string(),
+      channelAccessToken: z.string(),
+    })
+  ),
   async (c) => {
-    const { userId, text } = c.req.valid("json");
+    const { userId, text, channelAccessToken } = c.req.valid("json");
     await fetch("https://api.line.me/v2/bot/message/push", {
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ${process.env.CHANNEL_TOKEN}`,
+        Authorization: `Bearer ${channelAccessToken}`,
       },
       method: "POST",
       body: JSON.stringify({
