@@ -1,5 +1,5 @@
 {
-  "name": "hono-dmo",
+  "name": "hono-demo",
   "scripts": {
     "dev": "wrangler dev src/index.ts",
     "deploy": "wrangler deploy --minify src/index.ts"
